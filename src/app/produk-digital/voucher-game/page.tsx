@@ -4,12 +4,19 @@ import React, { useState } from "react";
 import { ArrowLeft, Gamepad2, User } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+// Definisi tipe untuk item game
+type GameItem = {
+  price: number;
+  bonus: number;
+  [key: string]: string | number;
+};
+
 const VoucherGamePage: React.FC = () => {
   const router = useRouter();
   const [selectedGame, setSelectedGame] = useState("");
   const [gameId, setGameId] = useState("");
   const [zoneId, setZoneId] = useState("");
-  const [selectedItem, setSelectedItem] = useState<any>(null);
+  const [selectedItem, setSelectedItem] = useState<GameItem | null>(null);
 
   const games = [
     {

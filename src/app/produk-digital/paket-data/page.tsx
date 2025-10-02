@@ -4,15 +4,23 @@ import React, { useState } from "react";
 import { ArrowLeft, Phone, Wifi } from "lucide-react";
 import { useRouter } from "next/navigation";
 
+// Definisikan tipe untuk paket data
+interface DataPackage {
+  name: string;
+  quota: string;
+  period: string;
+  price: number;
+}
+
 const PaketDataPage: React.FC = () => {
   const router = useRouter();
   const [phoneNumber, setPhoneNumber] = useState("");
   const [selectedOperator, setSelectedOperator] = useState("");
-  const [selectedPackage, setSelectedPackage] = useState<any>(null);
+  const [selectedPackage, setSelectedPackage] = useState<DataPackage | null>(null);
 
   const operators = ["Telkomsel", "Indosat", "XL", "Tri", "Smartfren", "Axis"];
 
-  const dataPackages: Record<string, any[]> = {
+  const dataPackages: Record<string, DataPackage[]> = {
     Telkomsel: [
       { name: "1GB / 7 Hari", quota: "1GB", period: "7 Hari", price: 15000 },
       { name: "3GB / 30 Hari", quota: "3GB", period: "30 Hari", price: 35000 },
@@ -72,7 +80,6 @@ const PaketDataPage: React.FC = () => {
       `Pembelian paket ${selectedPackage.name} ${selectedOperator} untuk ${phoneNumber} sedang diproses. Fitur pembayaran akan segera hadir!`
     );
   };
-
 
   return (
     <div className="min-h-screen bg-gray-50">

@@ -49,15 +49,15 @@ const PulsaPage: React.FC = () => {
     { nominal: 100000, harga: 100500 },
   ];
 
-  const detectOperator = (number: string) => {
-    const prefix = number.substring(0, 4);
-    for (const op of operators) {
-      if (op.prefix.some((p) => number.startsWith(p))) {
-        return op.name;
-      }
+ const detectOperator = (number: string) => {
+  for (const op of operators) {
+    if (op.prefix.some((p) => number.startsWith(p))) {
+      return op.name;
     }
-    return "";
-  };
+  }
+  return "";
+};
+
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value.replace(/\D/g, "");
